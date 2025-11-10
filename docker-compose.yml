@@ -1,0 +1,16 @@
+services:
+  prod_fastapi_hot_reload_sample:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - '8001:8001'
+    volumes:
+      - ./app:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    external: true
